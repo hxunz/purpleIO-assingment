@@ -40,7 +40,7 @@ const RestaurantList = () => {
 const Wrapper = styled.div`
   flex-direction: column;
   width: 1024px;
-  margin: 100px auto 0 auto;
+  margin: 120px auto 0 auto;
 `
 
 const Text = styled.div`
