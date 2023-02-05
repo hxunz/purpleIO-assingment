@@ -19,6 +19,7 @@ const RestaurantList = () => {
       <Text>EAT</Text>
       <CardWrapper>
         {restaurants.map(({
+          id,
           name,
           url,
           thumb,
@@ -26,6 +27,7 @@ const RestaurantList = () => {
           image
         }) => (
           <Restaurant
+            key={id}
             name={name}
             url={url}
             thumb={thumb}
@@ -41,7 +43,7 @@ const RestaurantList = () => {
 const Wrapper = styled.div`
   flex-direction: column;
   width: 1024px;
-  margin: 120px auto 0 auto;
+  margin: 0 auto;
 `
 
 const Text = styled.div`
