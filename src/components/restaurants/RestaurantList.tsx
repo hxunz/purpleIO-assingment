@@ -2,10 +2,8 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 import { loadRestaurants } from '@/redux/restaurantSlice';
 import { useEffect } from 'react';
 
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import { Box, CardActionArea } from '@mui/material';
 import styled from '@emotion/styled';
+import Restaurant from './Restaurant';
 
 const RestaurantList = () => {
   const dispatch = useAppDispatch();
@@ -21,19 +19,22 @@ const RestaurantList = () => {
       <Text>EAT</Text>
       <CardWrapper>
         {restaurants.map(({
-          image,
+          name,
+          url,
+          thumb,
+          description,
+          image
         }) => (
-          <CardContainer>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                image={image}
-              />
-            </CardActionArea>
-          </CardContainer>
+          <Restaurant
+            name={name}
+            url={url}
+            thumb={thumb}
+            description={description}
+            image={image}
+          />
         ))}
       </CardWrapper>
-    </Wrapper>
+    </Wrapper >
   )
 };
 
@@ -56,11 +57,5 @@ const CardWrapper = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 1rem;
 `;
-
-const CardContainer = styled(Card)`
-  width: 200px;
-  height: 200px;
-  margin: 1rem;
-`
 
 export default RestaurantList;
