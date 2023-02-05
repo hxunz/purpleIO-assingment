@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Link from 'next/link';
 
 const categories = ['AWESOME FOOD STORE', 'ABOUT', 'STORE'];
 
@@ -12,9 +13,11 @@ const Category = () => {
           {categories.map((
             name
           ) => (
-            <Categories>
-              {name}
-            </Categories>
+            <Link href={name.toLowerCase()}>
+              <Categories key={name}>
+                {name}
+              </Categories>
+            </Link>
           ))}
         </CategoryBox>
       </AppBar>
