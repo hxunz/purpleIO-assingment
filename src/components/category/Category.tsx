@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 
 const categories = ['AWESOME FOOD STORE', 'ABOUT', 'STORE'];
 
-function Category() {
+const Category = () => {
   return (
     <>
       <AppBar>
