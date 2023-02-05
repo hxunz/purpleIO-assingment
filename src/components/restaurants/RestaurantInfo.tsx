@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, Modal, Typography } from '@mui/material'
+import { Box, Button, Modal } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import styled from '@emotion/styled';
 import Link from 'next/link';
@@ -16,7 +16,7 @@ const RestaurantInfo: React.FC<Props> = ({ isOpen, handleClose, name, url, descr
   return (
     <Modal open={isOpen} onClose={handleClose} >
       <BoxWrapper>
-        <Button onClick={handleClose}>
+        <Button onClick={handleClose} style={{ position: 'absolute', right: 0 }}>
           <CloseIcon />
         </Button>
         <img src={image} />
@@ -43,7 +43,7 @@ const BoxWrapper = styled(Box)`
   height: 600px;
   background-color: white;
   border-radius: 8px;
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
