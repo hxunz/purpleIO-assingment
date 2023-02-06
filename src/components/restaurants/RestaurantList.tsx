@@ -1,60 +1,54 @@
-import { useAppDispatch, useAppSelector } from '@/hooks';
-import { loadRestaurants } from '@/redux/restaurantSlice';
-import { useEffect } from 'react';
+
+import { useCallback, useEffect, useState } from 'react';
 
 import styled from '@emotion/styled';
-import Restaurant from './Restaurant';
+
+import { useRestaurants } from '../../hooks/useRestaurants';
+
+import RestaurantCard from './RestaurantCard';
+import RestaurantInfo from './RestaurantInfo';
+import { Restaurant } from '@/redux/restaurantSlice';
 
 const RestaurantList = () => {
-  const dispatch = useAppDispatch();
+  const { restaurants, getRestaurants } = useRestaurants();
 
-  const { restaurants } = useAppSelector(store => store.restaurant);
+  const [selectedRestaurant, selectRestaurant] = useState<Restaurant | undefined>(undefined);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = useCallback((restaurant: Restaurant) => {
+    selectRestaurant(restaurant);
+    setIsOpen(true);
+  }, []);
+
+  const handleClose = () => {
+    setIsOpen(false);
+  }
 
   useEffect(() => {
-    dispatch(loadRestaurants())
+    getRestaurants();
   }, []);
 
   return (
-    <Wrapper>
-      <Text>EAT</Text>
-      <CardWrapper>
-        {restaurants.map(({
-          id,
-          name,
-          url,
-          thumb,
-          description,
-          image
-        }) => (
-          <Restaurant
-            key={id}
-            name={name}
-            url={url}
-            thumb={thumb}
-            description={description}
-            image={image}
+    <>
+      <RestaurantInfo
+        isOpen={isOpen}
+        restaurant={selectedRestaurant}
+        onClose={handleClose}
+      />
+      <Card>
+        {restaurants.map((restaurant) => (
+          <RestaurantCard
+            key={restaurant.id}
+            restaurant={restaurant}
+            onClick={handleClick}
           />
         ))}
-      </CardWrapper>
-    </Wrapper >
+      </Card>
+    </>
   )
 };
 
-const Wrapper = styled.div`
-  flex-direction: column;
-  width: 1024px;
-  margin: 0 auto;
-`
-
-const Text = styled.div`
-  font-size: 32px;
-  font-weight: bold;
-  line-height: 1.2;
-  letter-spacing: .02em;
-  padding-left: 16px;
-`
-
-const CardWrapper = styled.div`
+const Card = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 1rem;

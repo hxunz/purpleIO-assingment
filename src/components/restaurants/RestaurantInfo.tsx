@@ -2,21 +2,29 @@ import { Box, Button, Modal } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import { Restaurant } from '@/redux/restaurantSlice';
 
 type Props = {
   isOpen: boolean;
-  handleClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  name: string;
-  url: string;
-  description: string;
-  image: string;
+  onClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  restaurant?: Restaurant;
 }
 
-const RestaurantInfo: React.FC<Props> = ({ isOpen, handleClose, name, url, description, image }) => {
+const RestaurantInfo: React.FC<Props> = ({
+  isOpen,
+  onClose,
+  restaurant,
+}: Props) => {
+  if (!restaurant) {
+    return null;
+  }
+
+  const { image, name, description, url } = restaurant;
+
   return (
-    <Modal open={isOpen} onClose={handleClose} >
+    <Modal open={isOpen} onClose={onClose} >
       <BoxWrapper>
-        <Button onClick={handleClose} style={{ position: 'absolute', right: 0 }}>
+        <Button onClick={onClose} style={{ position: 'absolute', right: 0 }}>
           <CloseIcon />
         </Button>
         <img src={image} />
