@@ -10,7 +10,7 @@ type Props = {
   restaurant?: Restaurant;
 }
 
-const RestaurantInfo: React.FC<Props> = ({
+const RestaurantModal: React.FC<Props> = ({
   isOpen,
   onClose,
   restaurant,
@@ -58,4 +58,4 @@ const BoxWrapper = styled(Box)`
   padding: 4px;
 `
 
-export default RestaurantInfo;
+export default RestaurantModal;

@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { useRestaurants } from '../../hooks/useRestaurants';
 
 import RestaurantCard from './RestaurantCard';
-import RestaurantInfo from './RestaurantInfo';
+import RestaurantInfo from './RestaurantModal';
 import { Restaurant } from '@/redux/restaurantSlice';
 
 const RestaurantList = () => {
