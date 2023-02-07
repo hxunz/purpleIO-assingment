@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect, useState } from 'react';
 
 import styled from '@emotion/styled';
@@ -26,7 +25,7 @@ const RestaurantList = () => {
 
   useEffect(() => {
     getRestaurants();
-  }, []);
+  }, [getRestaurants]);
 
   return (
     <>

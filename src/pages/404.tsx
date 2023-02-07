@@ -6,7 +6,7 @@ const Custom404 = () => {
 
   useEffect(() => {
     setTimeout(() => router.push('/'), 5000);
-  }, []);
+  }, [router]);
 
   return (
     <h1>404 - Page Not Found</h1>
