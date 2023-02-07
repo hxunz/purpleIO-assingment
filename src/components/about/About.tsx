@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <div>FIND RESTAURANTS YOU WANT</div>
+    <div>Find resraurants you want</div>
   )
 };
 

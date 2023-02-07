@@ -24,23 +24,23 @@ const RestaurantModal: React.FC<Props> = ({
   return (
     <Modal open={isOpen} onClose={onClose} >
       <BoxWrapper>
-        <Button onClick={onClose} style={{ position: 'absolute', right: 0 }}>
+        <ClsoeButton onClick={onClose}>
           <CloseIcon />
-        </Button>
-        <img src={image} />
-        <div>
-          {name}
-        </div>
-        <div>
-          {description}
-        </div>
-        {url && (
-          <Link href={url} target='_blank'>
-            <div>
-              가게 정보
-            </div>
-          </Link>
-        )}
+        </ClsoeButton>
+        <ContentWrapper>
+          <Title>
+            {name}
+          </Title>
+          <Img src={image} />
+          <Context>
+            {description}
+          </Context>
+          {url && (
+            <StoreLink href={url} target='_blank'>
+              매장 정보 보기
+            </StoreLink>
+          )}
+        </ContentWrapper>
       </BoxWrapper>
     </Modal >
   )
@@ -56,6 +56,46 @@ const BoxWrapper = styled(Box)`
   left: 50%;
   transform: translate(-50%,-50%);
   padding: 4px;
+`
+
+const ContentWrapper = styled.div`
+  padding: 30px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+`
+
+const Title = styled.div`
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 18px;
+`
+
+const Img = styled.img`
+  width: 300px;
+`
+
+const Context = styled.div`
+  margin-top: 20px;
+  letter-spacing: 1px;
+  white-space: pre-line;
+  font-size: 12px;
+`
+
+const ClsoeButton = styled(Button)`
+  position: absolute;
+  right: 0;
+`
+
+const StoreLink = styled(Link)`
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: black;
+  margin-top: 15px;
 `
 
 export default RestaurantModal;
